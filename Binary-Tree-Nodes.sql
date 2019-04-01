@@ -17,5 +17,12 @@ insert into BST (N, P) values (2, NULL);
 
 
 /* Start query*/
-SELECT N, IF(P IS NULL, "Root", IF((SELECT COUNT(*) FROM BST WHERE B.N = P)>0, "Inner", "Leaf"))
+SELECT 
+    N, 
+    IF(
+        P IS NULL, 'Root', 
+        IF(
+            (SELECT COUNT(*) FROM BST WHERE B.N = P) > 0, 
+        'Inner', 'Leaf')
+        )
 FROM BST AS B ORDER BY N;
